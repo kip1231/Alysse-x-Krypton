@@ -7,10 +7,6 @@
     Discord Server: https://discord.com/invite/zschDHZ6SK
     YouTube: https://youtube.com/@Krutoy-Suslik?si=bbHI3pnaVV9YV-it
 ]]
-
--- More UNC-  loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-MoreUNC-13110"))()
-loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-MoreUNC-13110"))()
-
 local function generateRandomString(length)
     local chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
     local str = ""
