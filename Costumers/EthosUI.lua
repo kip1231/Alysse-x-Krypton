@@ -7,6 +7,7 @@
     Discord Server: https://discord.com/invite/zschDHZ6SK
     YouTube: https://youtube.com/@Krutoy-Suslik?si=bbHI3pnaVV9YV-it
 ]]
+
 local function generateRandomString(length)
     local chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
     local str = ""
@@ -48,6 +49,103 @@ local function isInGameMode()
 end
 
 -- intro
+
+        local ScreenGui = Instance.new("ScreenGui")
+            local Frame1 = Instance.new("Frame")
+            local KrasusuZet = Instance.new("TextLabel")
+            local TextLabel = Instance.new("TextLabel")
+            local bar = Instance.new("Frame")
+            local UICorner = Instance.new("UICorner")
+            local Bar = Instance.new("Frame")
+            local UICorner_2 = Instance.new("UICorner")
+            
+            ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+            ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+            ScreenGui.Name = "Krasusload"
+            
+            Frame1.Name = "Frame1"
+            Frame1.Parent = ScreenGui
+            Frame1.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+            Frame1.BorderColor3 = Color3.fromRGB(0, 0, 0)
+            Frame1.BorderSizePixel = 0
+            Frame1.ZIndex = 898888
+            Frame1.Position = UDim2.new(0, 0, -0.301470578, 0)
+            Frame1.Size = UDim2.new(1, 0, 2, 0)
+            
+            KrasusuZet.Name = "Krasusu Zet"
+            KrasusuZet.Parent = Frame1
+            KrasusuZet.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+            KrasusuZet.BorderColor3 = Color3.fromRGB(0, 0, 0)
+            KrasusuZet.BorderSizePixel = 0
+            KrasusuZet.Position = UDim2.new(0.419719309, 0, 0.194122553, 0)
+            KrasusuZet.Size = UDim2.new(0.159489632, 0, 0.0597381219, 0)
+            KrasusuZet.Font = Enum.Font.SourceSansBold
+            KrasusuZet.Text = "KraSus Zet"
+            KrasusuZet.TextColor3 = Color3.fromRGB(255, 255, 255)
+            KrasusuZet.TextSize = 51.000
+            
+            TextLabel.Parent = Frame1
+            TextLabel.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+            TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+            TextLabel.BorderSizePixel = 0
+            TextLabel.Position = UDim2.new(0.331960052, 0, 0.293721199, 0)
+            TextLabel.Size = UDim2.new(0.346889913, 0, 0.0615763552, 0)
+            TextLabel.Font = Enum.Font.SourceSansBold
+            TextLabel.Text = "Loading.."
+            TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+            TextLabel.TextSize = 25.000
+            
+            bar.Name = "bar"
+            bar.Parent = Frame1
+            bar.BackgroundColor3 = Color3.fromRGB(58, 58, 58)
+            bar.BorderColor3 = Color3.fromRGB(0, 0, 0)
+            bar.BorderSizePixel = 0
+            bar.Position = UDim2.new(0.238306358, 0, 0.5454849, 0)
+            bar.Size = UDim2.new(0.532695353, 0, 0.0467980281, 0)
+            
+            UICorner.Parent = bar
+            
+            Bar.Name = "Bar"
+            Bar.Parent = bar
+            Bar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Bar.Size = UDim2.new(0.100000001, 0, 1, 0)
+            
+            UICorner_2.CornerRadius = UDim.new(0.200000003, 0)
+            UICorner_2.Parent = Bar
+            
+            -- Scripts
+            
+            local ReplicatedFirst = game:GetService("ReplicatedFirst")
+local ContentProvider = game:GetService("ContentProvider")
+local TweenService = game:GetService("TweenService")
+local Background = Frame1
+
+ReplicatedFirst:RemoveDefaultLoadingScreen()
+local assets = game:GetService("Players").LocalPlayer.PlayerScripts:GetDescendants()
+ScreenGui.Enabled = true
+
+local totalTime = 10
+local startTime = os.time()
+local currentIndex = 1
+
+while os.time() - startTime < totalTime do
+    local asset = assets[currentIndex]
+    local percentage = math.round((os.time() - startTime) / totalTime * 100)
+    ContentProvider:PreloadAsync({asset})
+    Background:WaitForChild("TextLabel").Text = "Loading Assets: " .. currentIndex .. "/" .. #assets
+    TweenService:Create(Background.bar.Bar, TweenInfo.new(0.2, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {Size = UDim2.fromScale(percentage / 100, 1)}):Play()
+    currentIndex = currentIndex + 1
+    if currentIndex > #assets then
+        currentIndex = 1
+    end
+    task.wait(1)
+end
+
+Background:WaitForChild("TextLabel").Text = "loaded!"
+wait(1.5)
+task.wait()
+ScreenGui.Enabled = false
+task.wait()
 
 -- After checking, we create a Gui.
 
